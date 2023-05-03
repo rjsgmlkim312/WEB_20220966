@@ -11,12 +11,10 @@
         <meta name="keywords" content="computer">
         <base href="https://web--bsyit.run.goorm.site/">
 		<script type="text/javascript" src="/js/search.js" defer></script>
-		<script type="text/javascript" src="/js/basic_test.js" defer></script>
-		<script type="text/javascript" src="/js/data_type.js" defer></script>
-		<script type="text/javascript" src="/js/pop_up.js" defer></script>
-		<script type="text/javascript" src="/js/array_test.js" defer></script>
+	
+		<script type="text/javascript" src="/js/login.js" defer></script>
 </head>
-<body onload="pop_up();">
+<body onload="get_id();">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -55,9 +53,8 @@
                         </ul>
                     </li>
 					 <li class="nav-item">
-					<button class="btn btn-outline-success" type="submit" onclick="location.href='login/login.html'">로그인</button>
+					<button class="btn btn-outline-success" type="submit" onclick="logout()">로그아웃</button>
 					</li>
-
                 </ul>
             </div>
         </div>
@@ -172,5 +169,13 @@
       <i class="bi bi-instagram" style="color: #ac2bac; font-size: 2rem;"></i>
   </div>
 </footer>
+	<div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">이메일 주소를 입력해주세요.</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">비밀번호를 입력해주세요.</label>
+        </div>
     </body>
 </html>
