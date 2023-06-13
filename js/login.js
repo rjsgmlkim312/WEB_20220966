@@ -18,29 +18,42 @@ function login(){
 	
 	form.action = "../index_login.html";
 	form.method = "get";
+
+	const cookieName = "loginFailCount";
+  	let count = parseInt(get_logincount_CookieValue(cookieName));
+
+  	if (isNaN(count)) {
+    	count = 0;
+  	}
 	
-		if(check.checked == true){ // 아이디 체크 o
-        	alert("쿠키를 저장합니다.");
-        	setCookie("id", id.value, 1); // 1일 저장
-        	alert("쿠키 값 :" + id.value);
-        	}
-    	else { // 아이디 체크 x
-        	setCookie("id", id.value, 0); //날짜를 0 - 쿠키 삭제
-		}
-	//login_count();
-	//login_check();
-		if(id.value.length === 0 || passward.value.length === 0){
-			alert("아이디나 비밀번호를 입력해주세요.");
-		}
-		else{
-			session_set(); // 세션 생성
-			form.submit();
-		}
+	if(check.checked == true){ // 아이디 체크 o
+    	alert("쿠키를 저장합니다.");
+        setCookie("id", id.value, 1); // 1일 저장
+        alert("쿠키 값 :" + id.value);
+    }
+    else { // 아이디 체크 x
+        setCookie("id", id.value, 0); //날짜를 0 - 쿠키 삭제
+	}
+
+	if(id.value.length === 0 || passward.value.length === 0){
+		alert("아이디나 비밀번호를 입력해주세요.");
+		count += 1;
+  		set_logincount_CookieValue(cookieName, count.toString());
+		console.log("로그인 실패 횟수: " + count);
+	}
+	else{
+		session_set(); // 세션 생성
+		form.submit();
+	}
+	
+	if (count >= 3) {
+    	btnActive();
+    	console.log("로그인 제한: 3번 이상 실패");
+  	}
 }
 	
 function logout(){
 	session_del();
-	//logout_count();
 	location.href='../index.html';
 }
 
@@ -77,16 +90,16 @@ function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
     }
 	session_check(); // 세션 유무 검사
 }
-/*
+
 function login_check(){
+	let id = document.querySelector("#floatingInput");
+	let passward = document.querySelector("#floatingPassword");
+	
 	var id_check = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
 	var pass_check = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 	var id_result = id_check.test(id);
 	var pass_result = pass_check.test(passward);
-	var login_Cnt = 0;
-	
-	if(login_Cnt < 3){
-		login_Cnt++;
+
 		if(id.value.length === 0 || passward.value.length === 0){
 			alert("아이디나 비밀번호를 입력해주세요.");
 		}
@@ -94,14 +107,68 @@ function login_check(){
 			alert("아이디나 비밀번호의 형식을 제대로 입력해주세요.");
 		}
 		else{
-			session_set(); // 세션 생성
-			form.submit();
+			login();
 		}
-	}
+}
+
+
+function btnActive(){
+	const btn = document.getElementById('login_btn');
+	btn.disabled = true;
+}
+	
+// 로그인 버튼 클릭 시 실행되는 함수
+function login_count() {
+  const cookieName = "login_Cnt";
+  let count = parseInt(get_login_CookieValue(cookieName)); // value
+
+  if (isNaN(count)) {
+    count = 0;
+  }
+
+  count += 1;
+  set_login_CookieValue(cookieName, count.toString());
+
+  console.log("로그인 횟수: " + count);
+
+	location.href='login.html';
+}
+
+// 로그아웃 버튼 클릭 시 실행되는 함수
+function logout_count() {
+  const cookieName = "logout_Cnt";
+  let count = parseInt(get_logout_CookieValue(cookieName));
+
+  if (isNaN(count)) {
+    count = 0;
+  }
+
+  count += 1;
+  set_logout_CookieValue(cookieName, count.toString());
+
+  console.log("로그아웃 횟수: " + count);
+
+	logout();
+}
+
+// 로그인 실패 횟수를 기록하고 제한하는 함수
+/*function handleFailedLogin() {
+  const cookieName = "loginFailCount";
+  let count = parseInt(getCookieValue(cookieName));
+
+  if (isNaN(count)) {
+    count = 0;
+  }
+
+  count += 1;
+  setCookieValue(cookieName, count.toString());
+
+  console.log("로그인 실패 횟수: " + count);
+
+  if (count >= 3) {
+    // 로그인 제한 로직을 여기에 추가
+    console.log("로그인 제한: 3번 이상 실패");
+    // ... 로그인 제한에 대한 추가 동작을 수행할 수 있습니다.
+  }
 }
 */
-
-
-	
-
-

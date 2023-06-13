@@ -64,7 +64,7 @@ function session_join_set(){ //세션 저장(객체)
     let b_day = document.querySelector("#birthdayDate").value;
     let gender = document.querySelector("#inlineRadioOptions");
     let email = document.querySelector("#emailAddress").value;
-    let p_number = document.querySelector("#phoneNumber").value;
+    let p_number = document.querySelector("#passward").value;
     let class_check = document.querySelector(".select form-control-lg");
     let random = new Date(); // 랜덤 타임스탬프
     
@@ -81,3 +81,14 @@ function session_join_set(){ //세션 저장(객체)
         alert("세션 스토리지 지원 x");
     }   
 }
+
+function session_join_get(){
+	if(sessionStorage){
+		console.log(sessionStorage.getItem("Session_Storage_object"));
+	}
+	else{
+		alert("세션 스토리지 지원 x");
+	}
+}
+
+

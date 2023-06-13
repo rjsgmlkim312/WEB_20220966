@@ -53,7 +53,7 @@
                         </ul>
                     </li>
 					 <li class="nav-item">
-					<button class="btn btn-outline-success" type="submit" onclick="logout()">로그아웃</button>
+					<button class="btn btn-outline-success" type="submit" onclick="logout_count()">로그아웃</button>
 					</li>
                 </ul>
             </div>
@@ -84,6 +84,25 @@
 			<br>
 			<p style="text-align:center;"><caption align="top">현재 검색어 :<p id="search_message"></p></caption></p>
         </form>
+	<div style="text-align: center; font-size: 24px;">로그아웃까지 : </div>
+	<div id="timer" style="text-align: center; font-size: 24px;"></div>
+	<script>
+		var time = 300;
+			var min = "";
+			var sec = "";
+			
+			var x = setInterval(function(){
+				min = parseInt(time/60);
+				sec = time%60;
+				
+				document.getElementById("timer").innerHTML = min + "분" + sec + "초";
+				time--;
+				
+				if(time < 0){
+					clearInterval(x);
+				}
+			}, 1000);
+	</script>
         <br><br><br><br><br>
 	<div class="w-auto p-3" style="background-color: #;">
 		        <!-- <table class="table table-striped table-bordered table-hover"> -->
@@ -156,8 +175,7 @@
         </table-->
         <hr>
         <p style="text-align:right;">
-            <font size="3em" color="red">
-                문서의 본문 텍스트, 이미지, 테이블, 자바스크립트 코드, 동영상 등등</font>
+            <font size="3em" color="red"></font>
         </p>
         <br>
 	<footer class="bg-light text-center text-lg-start">
@@ -169,13 +187,5 @@
       <i class="bi bi-instagram" style="color: #ac2bac; font-size: 2rem;"></i>
   </div>
 </footer>
-	<div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">이메일 주소를 입력해주세요.</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">비밀번호를 입력해주세요.</label>
-        </div>
     </body>
 </html>
