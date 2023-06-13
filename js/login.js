@@ -9,6 +9,7 @@ addJavascript('/js/security.js'); // 암복호화
 addJavascript('/js/session.js'); // 세션
 addJavascript('/js/cookie.js'); // 쿠키
 
+
 function login(){
 	let form = document.querySelector("#form_main");
 	let id = document.querySelector("#floatingInput");
@@ -29,7 +30,7 @@ function login(){
 	//login_count();
 	//login_check();
 		if(id.value.length === 0 || passward.value.length === 0){
-			alert("아이디나 비밀번호를 입력해주세요.")
+			alert("아이디나 비밀번호를 입력해주세요.");
 		}
 		else{
 			session_set(); // 세션 생성
@@ -78,19 +79,11 @@ function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
 }
 /*
 function login_check(){
-	let form = document.querySelector("#form_main");
-	let id = document.querySelector("#floatingInput");
-	let passward = document.querySelector("#floatingPassword");
-	let check = document.querySelector("#idSaveCheck");
-	
 	var id_check = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
 	var pass_check = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 	var id_result = id_check.test(id);
 	var pass_result = pass_check.test(passward);
 	var login_Cnt = 0;
-	
-	form.action = "../index_login.html";
-	form.method = "get";
 	
 	if(login_Cnt < 3){
 		login_Cnt++;

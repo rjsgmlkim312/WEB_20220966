@@ -40,6 +40,7 @@ function addJavascript(jsname) { // 자바스크립트 외부 연동
 	s.setAttribute('src',jsname);
 	th.appendChild(s);
 }
+addJavascript('/js/login.js'); // 로그인
 addJavascript('/js/security.js'); // 암복호화
 addJavascript('/js/session.js'); // 세션
 addJavascript('/js/cookie.js'); // 쿠키

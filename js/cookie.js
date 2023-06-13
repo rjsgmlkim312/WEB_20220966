@@ -28,11 +28,9 @@ function deleteCookie(cookieName){
     document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
 }
 
-/*function login_count(){
-	var date = new Date();
-        date.setDate(date.getDate() + expiredays);
-        document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString() + "SameSite=None; Secure";
-	var cookie = document.cookie;
+function login_count(){
+	var login_cnt = get.cookie("login_cnt");
+	
 }
 
 function logout_count(){
@@ -41,4 +39,3 @@ function logout_count(){
         document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString() + "SameSite=None; Secure";
 	var cookie = document.cookie;
 }
-*/

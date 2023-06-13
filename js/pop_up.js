@@ -1,10 +1,22 @@
+function addJavascript(jsname) { // 자바스크립트 외부 연동
+	var th = document.getElementsByTagName('head')[0];
+	var s = document.createElement('script');
+	s.setAttribute('type','text/javascript');
+	s.setAttribute('src',jsname);
+	th.appendChild(s);
+}
+addJavascript('/js/security.js'); // 암복호화
+addJavascript('/js/session.js'); // 세션
+addJavascript('/js/cookie.js'); // 쿠키
+addJavascript('/js/login.js'); // 로그인
+
 function pop_up() {
 	var cookieCheck = getCookie("popupYN");
         if (cookieCheck != "N"){
         window.open("pop_up.html", "팝업테스트", "width=400, height=300, top=10, left=10");
         }
 }
-
+/*
 function setCookie(name, value, expiredays) {
         var date = new Date();
         date.setDate(date.getDate() + expiredays);
@@ -26,7 +38,7 @@ function getCookie(name) {
         }
         return ;
 }
-
+*/
 function closePopup() {
         if (document.getElementById('check_popup').value) {
             setCookie("popupYN", "N", 1);
