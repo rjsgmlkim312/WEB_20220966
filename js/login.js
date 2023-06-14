@@ -47,8 +47,10 @@ function login(){
 	}
 	
 	if (count >= 3) {
-    	btnActive();
+    	btn_disActive();
     	console.log("로그인 제한: 3번 이상 실패");
+		setTimeout(btn_Active,60000); // 1분동안 로그인 못하게 제한
+		deleteCookie(cookieName);
   	}
 }
 	
@@ -111,8 +113,12 @@ function login_check(){
 		}
 }
 
+function btn_Active(){
+	const btn = document.getElementById('login_btn');
+	btn.disabled = false;
+}
 
-function btnActive(){
+function btn_disActive(){
 	const btn = document.getElementById('login_btn');
 	btn.disabled = true;
 }
@@ -128,10 +134,8 @@ function login_count() {
 
   count += 1;
   set_login_CookieValue(cookieName, count.toString());
-
   console.log("로그인 횟수: " + count);
-
-	location.href='login.html';
+  location.href='login.html';
 }
 
 // 로그아웃 버튼 클릭 시 실행되는 함수
