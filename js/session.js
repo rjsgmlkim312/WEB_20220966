@@ -90,5 +90,14 @@ function session_join_get(){
 		alert("세션 스토리지 지원 x");
 	}
 }
-
+/*
+function session_decrypt_text(){ // 암호화된 것 불러오기.
+	if(sessionStorage){
+		decrypt_text();
+	}
+	else{
+		alert("세션 스토리지 지원 x")
+	}
+}
+*/
 
